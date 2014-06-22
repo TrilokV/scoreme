@@ -32,8 +32,8 @@ public class homeTeamScore {
 	public static void main(String[] args) {
 		homeTeamScore team = new homeTeamScore();
 		homeTeam home = new homeTeam();
-		home.setHomeTeamName("UBS");
-		home.setHomeovers(50.0);
+		home.setHomeTeamName("CCS");
+		home.setHomeovers(0.0);
 		if (team.execute(home)) {
 			System.out.println("SUCCESS:Home Team Created");
 		} else {
