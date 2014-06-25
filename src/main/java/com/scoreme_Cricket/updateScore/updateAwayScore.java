@@ -22,13 +22,14 @@ public class updateAwayScore {
 		DBObject temp = awayteamCollection.findOne(searchQuery);
 		ArrayList<awayTeam> awayteam = new ArrayList<awayTeam>();
 
-		int runs = (int) temp.get("awayruns");
+		int runs = Integer.parseInt(temp.get("awayruns").toString());
+		
+		double overs = Double.parseDouble(temp.get("awayovers").toString());
+		double runrate = Double.parseDouble(temp.get("awayrunrate").toString());
+		double gamelimit = Double.parseDouble(temp.get("awayoverslimit").toString());
+		int extras = Integer.parseInt(temp.get("awayextras").toString());
+		int wickets = Integer.parseInt(temp.get("awaywickets").toString());
 
-		double overs = (double) temp.get("awayovers");
-		double runrate = (double) temp.get("awayrunrate");
-		double gamelimit = (double) temp.get("awayoverslimit");
-		int extras = (int) temp.get("awayextras");
-		int wickets = (int) temp.get("awaywickets");
 
 		String overslimit = Double.toString(overs);
 

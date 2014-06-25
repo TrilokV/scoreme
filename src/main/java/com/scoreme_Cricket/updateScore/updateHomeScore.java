@@ -22,13 +22,13 @@ public class updateHomeScore {
 		DBObject temp = hometeamCollection.findOne(searchQuery);
 		ArrayList<homeTeam> hometeam = new ArrayList<homeTeam>();
 
-		int runs = (int) temp.get("homeruns");
-
-		double overs = (double) temp.get("homeovers");
-		double runrate = (double) temp.get("homerunrate");
-		double gamelimit = (double) temp.get("homeoverslimit");
-		int extras = (int) temp.get("homeextras");
-		int wickets = (int) temp.get("homewickets");
+		int runs = Integer.parseInt(temp.get("homeruns").toString());
+		
+		double overs = Double.parseDouble(temp.get("homeovers").toString());
+		double runrate = Double.parseDouble(temp.get("homerunrate").toString());
+		double gamelimit = Double.parseDouble(temp.get("homeoverslimit").toString());
+		int extras = Integer.parseInt(temp.get("homeextras").toString());
+		int wickets = Integer.parseInt(temp.get("homewickets").toString());
 
 		String overslimit = Double.toString(overs);
 
