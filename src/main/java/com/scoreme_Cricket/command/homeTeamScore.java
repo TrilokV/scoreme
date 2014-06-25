@@ -34,6 +34,7 @@ public class homeTeamScore {
 		homeTeam home = new homeTeam();
 		home.setHomeTeamName("CCS");
 		home.setHomeovers(0.0);
+		home.setHomeoverslimit(40.0);
 		if (team.execute(home)) {
 			System.out.println("SUCCESS:Home Team Created");
 		} else {

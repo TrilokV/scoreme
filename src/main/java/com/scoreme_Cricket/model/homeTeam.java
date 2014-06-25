@@ -4,7 +4,7 @@ public class homeTeam {
 
 	private String homeTeamName;
 	int homeruns, homewickets, homeextras;
-	double homeovers, homerunrate;
+	double homeovers, homerunrate, homeoverslimit;
 	public String getHomeTeamName() {
 		return homeTeamName;
 	}
@@ -40,6 +40,12 @@ public class homeTeam {
 	}
 	public void setHomerunrate(double homerunrate) {
 		this.homerunrate = homerunrate;
+	}
+	public double getHomeoverslimit() {
+		return homeoverslimit;
+	}
+	public void setHomeoverslimit(double homeoverslimit) {
+		this.homeoverslimit = homeoverslimit;
 	}
 	
 

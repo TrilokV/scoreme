@@ -4,7 +4,7 @@ public class awayTeam {
 
 	private String awayTeamName;
 	private int awayruns, awaywickets, awayextras;
-	private double awayovers, awayrunrate;
+	private double awayovers, awayrunrate, awayoverslimit;
 	public String getAwayTeamName() {
 		return awayTeamName;
 	}
@@ -40,6 +40,12 @@ public class awayTeam {
 	}
 	public void setAwayrunrate(double awayrunrate) {
 		this.awayrunrate = awayrunrate;
+	}
+	public double getAwayoverslimit() {
+		return awayoverslimit;
+	}
+	public void setAwayoverslimit(double awayoverslimit) {
+		this.awayoverslimit = awayoverslimit;
 	}
 	
 

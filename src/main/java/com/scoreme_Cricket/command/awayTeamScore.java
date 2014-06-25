@@ -32,10 +32,11 @@ public class awayTeamScore {
 	//testing the connection and the db creation.
 	public static void main(String[] args) {
 		awayTeamScore team = new awayTeamScore();
-		awayTeam home = new awayTeam();
-		home.setAwayTeamName("WHCC");
-		home.setAwayovers(50.0);
-		if (team.execute(home)) {
+		awayTeam away = new awayTeam();
+		away.setAwayTeamName("WHCC");
+		away.setAwayovers(0.0);
+		away.setAwayoverslimit(40.0);
+		if (team.execute(away)) {
 			System.out.println("SUCCESS:Away Team Created");
 		} else {
 			System.out.println("ERROR:Failed to create away Team");
