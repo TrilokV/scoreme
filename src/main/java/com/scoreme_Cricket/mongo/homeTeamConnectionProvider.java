@@ -15,7 +15,7 @@ public class homeTeamConnectionProvider {
 	 * @return
 	 */
 
-	public DBCollection getCollection(String string) {
+	public DBCollection getCollection() {
 		try {
 
 			MongoClient mongo = new MongoClient("kahana.mongohq.com", 10089);
@@ -44,7 +44,7 @@ public class homeTeamConnectionProvider {
 
 	public static void main(String[] args) {
 		homeTeamConnectionProvider home = new homeTeamConnectionProvider();
-		DBCollection hometeamscore = home.getCollection("hometeamscore");
+		DBCollection hometeamscore = home.getCollection();
 		if(hometeamscore == null){
 			System.out.println("ERROR:No Connection");
 		}

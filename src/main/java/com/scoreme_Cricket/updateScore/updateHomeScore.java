@@ -14,7 +14,7 @@ public class updateHomeScore {
 
 	public ArrayList<homeTeam> execute(String homeTeamName, String Command) {
 		homeTeamConnectionProvider hometeamConn = new homeTeamConnectionProvider();
-		DBCollection hometeamCollection = hometeamConn.getCollection("hometeamscore");
+		DBCollection hometeamCollection = hometeamConn.getCollection();
 
 		// DBCursor cursor = hometeamCollection.find();
 		BasicDBObject searchQuery = new BasicDBObject();

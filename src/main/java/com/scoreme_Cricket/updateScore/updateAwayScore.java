@@ -3,6 +3,7 @@ package com.scoreme_Cricket.updateScore;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 //import com.mongodb.DBCursor;
@@ -14,7 +15,7 @@ public class updateAwayScore {
 
 	public ArrayList<awayTeam> execute(String awayTeamName, String Command) {
 		awayTeamConnectionProvider awayteamConn = new awayTeamConnectionProvider();
-		DBCollection awayteamCollection = awayteamConn.getCollection("awayteamscore");
+		DBCollection awayteamCollection = awayteamConn.getCollection();
 
 		// DBCursor cursor = awayteamCollection.find();
 		BasicDBObject searchQuery = new BasicDBObject();
@@ -161,15 +162,14 @@ public class updateAwayScore {
 				awayteamCollection.update(searchQuery, newDocument3);
 				awayteamCollection.update(searchQuery, newDocument4);
 			}
-
 		}
 		return awayteam;
 	}
 
 	public static void main(String[] args) {
-		updateAwayScore u = new updateAwayScore();
-		u.execute("WHCC", "Runs1");
-
+		//updateAwayScore u = new updateAwayScore();
+		//u.execute("WHCC", "Runs1");
+	   
 	}
 
 }

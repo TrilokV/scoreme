@@ -12,12 +12,11 @@ public class awayTeamScore {
 	
 	public boolean execute(awayTeam away) {
 		awayTeamConnectionProvider awayconn = new awayTeamConnectionProvider();
-		DBCollection collection = awayconn.getCollection("awayteamscore");
+		DBCollection collection = awayconn.getCollection();
 
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			DBObject dbObject = (DBObject) JSON.parse(mapper
-					.writeValueAsString(away));
+			DBObject dbObject = (DBObject) JSON.parse(mapper.writeValueAsString(away));
 			collection.insert(dbObject);
 			
 			
@@ -33,7 +32,7 @@ public class awayTeamScore {
 	public static void main(String[] args) {
 		awayTeamScore team = new awayTeamScore();
 		awayTeam away = new awayTeam();
-		away.setAwayTeamName("WHCC");
+		away.setAwayTeamName("JPL");
 		away.setAwayovers(0.0);
 		away.setAwayoverslimit(40.0);
 		if (team.execute(away)) {
