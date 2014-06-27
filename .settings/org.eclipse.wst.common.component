@@ -2,6 +2,7 @@
     <wb-module deploy-name="scoreMe_Cricket">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <property name="context-root" value="scoreMe_Cricket"/>
         <property name="java-output-path" value="/scoreMe_Cricket/build/classes"/>
     </wb-module>
