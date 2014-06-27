@@ -1,7 +1,7 @@
 package com.scoreme_Cricket.services;
 
 import com.scoreme_Cricket.command.*;
-import com.scoreme_Cricket.model.awayTeam;
+import com.scoreme_Cricket.model.*;
 import com.scoreme_Cricket.mongo.*;
 import com.scoreme_Cricket.updateScore.*;
 
@@ -41,13 +41,21 @@ public class teamServices {
 		return Response.status(200).entity(list).build();
 	}
 	@GET
-	@Path("/awayteam/{awayTeamName}/")
+	@Path("/{awayTeamName}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAwayTeam(@PathParam("awayTeamName") String awayTeamName) {
 		getAwayTeamCommand getawayCommand = new getAwayTeamCommand();
 		DBObject away = getawayCommand.execute(awayTeamName);
 		return Response.status(200).entity(away).build();
 	}
+	/*@GET
+	@Path("/{homeTeamName}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getHomeTeam(@PathParam("homeTeamName") String homeTeamName) {
+		getHomeTeamCommand gethomeCommand = new getHomeTeamCommand();
+		DBObject away = gethomeCommand.execute(homeTeamName);
+		return Response.status(200).entity(away).build();
+	}*/
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
@@ -67,4 +75,5 @@ public class teamServices {
 			return Response.status(500).entity(e.toString()).build();
 		}
 	}
+	
 }
