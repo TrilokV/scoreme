@@ -1,5 +1,8 @@
 package com.scoreme_Cricket.model;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class awayTeam {
 
 	private String awayTeamName;

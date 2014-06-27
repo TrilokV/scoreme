@@ -12,15 +12,14 @@ import com.scoreme_Cricket.mongo.homeTeamConnectionProvider;
 
 public class updateHomeScore {
 
-	public ArrayList<homeTeam> execute(String homeTeamName, String Command) {
+	public boolean execute(String homeTeamName, String Command) {
 		homeTeamConnectionProvider hometeamConn = new homeTeamConnectionProvider();
-		DBCollection hometeamCollection = hometeamConn.getCollection("hometeamscore");
+		DBCollection hometeamCollection = hometeamConn.getCollection();
 
 		// DBCursor cursor = hometeamCollection.find();
 		BasicDBObject searchQuery = new BasicDBObject();
 		searchQuery.put("homeTeamName", homeTeamName);
 		DBObject temp = hometeamCollection.findOne(searchQuery);
-		ArrayList<homeTeam> hometeam = new ArrayList<homeTeam>();
 
 		int runs = Integer.parseInt(temp.get("homeruns").toString());
 		
@@ -41,7 +40,7 @@ public class updateHomeScore {
 
 			// if the granted overs equals number of overs bowled
 			// or if all get out, close one innings or finish the game.
-			return hometeam;
+			return true;
 		}
 
 		/*
@@ -72,7 +71,7 @@ public class updateHomeScore {
 			 * My Business logic for calculating and updating the DB for Home
 			 * Team.
 			 */
-			if (Command == "Runs1") {
+			if (Command.equals("Runs1")) {
 				runs++;
 				overs = overs + 0.1;
 
@@ -85,7 +84,7 @@ public class updateHomeScore {
 				hometeamCollection.update(searchQuery, newDocument);
 				hometeamCollection.update(searchQuery, newDocument1);
 				hometeamCollection.update(searchQuery, newDocument4);
-			} else if (Command == "Runs2") {
+			} else if (Command.equals("Runs2")) {
 				runs += 2;
 				overs = overs + 0.1;
 				newDocument.append("$set",new BasicDBObject().append("homeovers", overs));
@@ -97,7 +96,7 @@ public class updateHomeScore {
 				hometeamCollection.update(searchQuery, newDocument);
 				hometeamCollection.update(searchQuery, newDocument1);
 				hometeamCollection.update(searchQuery, newDocument4);
-			} else if (Command == "Runs3") {
+			} else if (Command.equals("Runs3")) {
 				runs += 3;
 				overs = overs + 0.1;
 				newDocument.append("$set",new BasicDBObject().append("homeovers", overs));
@@ -110,7 +109,7 @@ public class updateHomeScore {
 				hometeamCollection.update(searchQuery, newDocument);
 				hometeamCollection.update(searchQuery, newDocument1);
 				hometeamCollection.update(searchQuery, newDocument4);
-			} else if (Command == "Runs4") {
+			} else if (Command.equals("Runs4")) {
 				runs += 4;
 				overs += 0.1;
 				newDocument.append("$set",new BasicDBObject().append("homeovers", overs));
@@ -122,7 +121,7 @@ public class updateHomeScore {
 				hometeamCollection.update(searchQuery, newDocument);
 				hometeamCollection.update(searchQuery, newDocument1);
 				hometeamCollection.update(searchQuery, newDocument4);
-			} else if (Command == "Runs6") {
+			} else if (Command.equals("Runs6")) {
 				runs += 6;
 				overs += 0.1;
 				newDocument.append("$set",new BasicDBObject().append("homeovers", overs));
@@ -134,7 +133,7 @@ public class updateHomeScore {
 				hometeamCollection.update(searchQuery, newDocument);
 				hometeamCollection.update(searchQuery, newDocument1);
 				hometeamCollection.update(searchQuery, newDocument4);
-			} else if (Command == "Extras") {
+			} else if (Command.equals("Extras")) {
 				runs++;
 				extras++;
 				newDocument1.append("$set",new BasicDBObject().append("homeruns", runs));
@@ -146,7 +145,7 @@ public class updateHomeScore {
 				hometeamCollection.update(searchQuery, newDocument1);
 				hometeamCollection.update(searchQuery, newDocument2);
 				hometeamCollection.update(searchQuery, newDocument4);
-			} else if (Command == "Wickets") {
+			} else if (Command.equals("Wickets")) {
 				wickets++;
 				overs += 0.1;
 
@@ -162,7 +161,7 @@ public class updateHomeScore {
 			}
 
 		}
-		return hometeam;
+		return true;
 	}
 
 	public static void main(String[] args) {

@@ -3,6 +3,7 @@ package com.scoreme_Cricket.updateScore;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 //import com.mongodb.DBCursor;
@@ -12,15 +13,14 @@ import com.scoreme_Cricket.mongo.awayTeamConnectionProvider;
 
 public class updateAwayScore {
 
-	public ArrayList<awayTeam> execute(String awayTeamName, String Command) {
+	public boolean execute(String awayTeamName, String Command) {
 		awayTeamConnectionProvider awayteamConn = new awayTeamConnectionProvider();
-		DBCollection awayteamCollection = awayteamConn.getCollection("awayteamscore");
+		DBCollection awayteamCollection = awayteamConn.getCollection();
 
 		// DBCursor cursor = awayteamCollection.find();
 		BasicDBObject searchQuery = new BasicDBObject();
 		searchQuery.put("awayTeamName", awayTeamName);
 		DBObject temp = awayteamCollection.findOne(searchQuery);
-		ArrayList<awayTeam> awayteam = new ArrayList<awayTeam>();
 
 		int runs = Integer.parseInt(temp.get("awayruns").toString());
 		
@@ -42,7 +42,8 @@ public class updateAwayScore {
 
 			// if the granted overs equals number of overs bowled
 			// or if all get out, close one innings or finish the game.
-			return awayteam;
+			//return awayteam;
+			return true;
 		}
 
 		/*
@@ -73,7 +74,7 @@ public class updateAwayScore {
 			 * My Business logic for calculating and updating the DB for Home
 			 * Team.
 			 */
-			if (Command == "Runs1") {
+			if (Command.equals("Runs1")) {
 				runs++;
 				overs = overs + 0.1;
 
@@ -86,7 +87,7 @@ public class updateAwayScore {
 				awayteamCollection.update(searchQuery, newDocument);
 				awayteamCollection.update(searchQuery, newDocument1);
 				awayteamCollection.update(searchQuery, newDocument4);
-			} else if (Command == "Runs2") {
+			} else if (Command.equals("Runs2")) {
 				runs += 2;
 				overs = overs + 0.1;
 				newDocument.append("$set",new BasicDBObject().append("awayovers", overs));
@@ -98,7 +99,7 @@ public class updateAwayScore {
 				awayteamCollection.update(searchQuery, newDocument);
 				awayteamCollection.update(searchQuery, newDocument1);
 				awayteamCollection.update(searchQuery, newDocument4);
-			} else if (Command == "Runs3") {
+			} else if (Command.equals("Runs3")) {
 				runs += 3;
 				overs = overs + 0.1;
 				newDocument.append("$set",new BasicDBObject().append("awayovers", overs));
@@ -111,7 +112,7 @@ public class updateAwayScore {
 				awayteamCollection.update(searchQuery, newDocument);
 				awayteamCollection.update(searchQuery, newDocument1);
 				awayteamCollection.update(searchQuery, newDocument4);
-			} else if (Command == "Runs4") {
+			} else if (Command.equals("Runs4")) {
 				runs += 4;
 				overs += 0.1;
 				newDocument.append("$set",new BasicDBObject().append("awayovers", overs));
@@ -123,7 +124,7 @@ public class updateAwayScore {
 				awayteamCollection.update(searchQuery, newDocument);
 				awayteamCollection.update(searchQuery, newDocument1);
 				awayteamCollection.update(searchQuery, newDocument4);
-			} else if (Command == "Runs6") {
+			} else if (Command.equals("Runs6")) {
 				runs += 6;
 				overs += 0.1;
 				newDocument.append("$set",new BasicDBObject().append("awayovers", overs));
@@ -135,7 +136,7 @@ public class updateAwayScore {
 				awayteamCollection.update(searchQuery, newDocument);
 				awayteamCollection.update(searchQuery, newDocument1);
 				awayteamCollection.update(searchQuery, newDocument4);
-			} else if (Command == "Extras") {
+			} else if (Command.equals("Extras")) {
 				runs++;
 				extras++;
 				newDocument1.append("$set",new BasicDBObject().append("awayruns", runs));
@@ -147,7 +148,7 @@ public class updateAwayScore {
 				awayteamCollection.update(searchQuery, newDocument1);
 				awayteamCollection.update(searchQuery, newDocument2);
 				awayteamCollection.update(searchQuery, newDocument4);
-			} else if (Command == "Wickets") {
+			} else if (Command.equals("Wickets")) {
 				wickets++;
 				overs += 0.1;
 
@@ -161,15 +162,14 @@ public class updateAwayScore {
 				awayteamCollection.update(searchQuery, newDocument3);
 				awayteamCollection.update(searchQuery, newDocument4);
 			}
-
 		}
-		return awayteam;
+		return true;
 	}
 
 	public static void main(String[] args) {
 		updateAwayScore u = new updateAwayScore();
-		u.execute("WHCC", "Runs1");
-
+		u.execute("JPL", "Runs6");
+	   
 	}
 
 }

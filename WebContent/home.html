@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script src="http://code.jquery.com/jquery-latest.min.js">
+</script>
+
+<script>
+//we are reusing this URL, so move it to a variable
+base_url="/rest/teams/";
+
+$(document).ready(function(){
+	 $("#awayname").keyup(function(){
+		 var awayTeamName=document.getElementById("awayname").value;
+		alert(awayTeamName);
+	 });
+	/* $("#homename").keyup(function(){
+		 var homeTeamName=document.getElementById("homename").value;
+		alert(homeTeamName);
+	 });*/
+   
+   $.fn.serializeObject = function()
+    {
+       var o = {};
+       var a = this.serializeArray();
+       $.each(a, function() {
+           if (o[this.name]) {
+               if (!o[this.name].push) {
+                   o[this.name] = [o[this.name]];
+               }
+               o[this.name].push(this.value || '');
+           } else {
+               o[this.name] = this.value || '';
+           }
+       });
+       return o;
+    };
+    $('#teamNamesForm').submit(function(){
+    	console.log($('#teamNamesForm').serializeObject());
+    	postData($('#teamNamesForm').serializeObject());
+    	console.log($('#teamNamesForm').serializeObject());
+    	return false;
+    });
+    
+    function postData(data){
+    	//var parameter={awayTeamName:'india'};
+    	console.log(data);
+        $.ajax({
+                type: "PUT",
+                url: "/rest/teams/createawayteam",
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                crossDomain: true,
+                dataType: "json",
+                success: function (data, status, jqXHR) {
+                    alert("success");
+                },
+                error: function (jqXHR, status) {
+                    console.log(jqXHR);
+                    alert('failed, please check console for errors');
+                }
+             });
+        
+    }
+    
+ /*   function postData(data){
+    	//var parameter={awayTeamName:'india'};
+    	console.log(data);
+        $.ajax({
+                type: "PUT",
+                url: "/rest/teams/createhometeam",
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                crossDomain: true,
+                dataType: "json",
+                success: function (data, status, jqXHR) {
+                    alert("success");
+                },
+                error: function (jqXHR, status) {
+                    console.log(jqXHR);
+                    alert('failed, please check console for errors');
+                }
+             });
+        
+    }*/
+});
+
+</script>
+
+<body>
+<div>
+<script src="http://l.yimg.com/rt/pps/listbadge_1.8.js">{"pipe_id":"tMcVGcqn3BGvsT__2R2EvQ","_btype":"list","width":"1500","height":"50"}</script>
+<form method="post" action="http://localhost:5100/home" id="teamNamesForm" >
+<div class="teamNamesentry">
+<!--  Home Team Name: <input type="text" name="homename" id="homename" /-->
+Away Team: <input type="text" name="awayTeamName" id="awayTeamName" />
+<!-- Home Team: <input type="text" name="homeTeamName" id="homeTeamName" /--> 
+</div>
+<input type="submit" value="Play!" />
+</form>
+</div>
+</body>
+</html>

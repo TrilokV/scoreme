@@ -12,7 +12,7 @@ public class homeTeamScore {
 	
 	public boolean execute(homeTeam home) {
 		homeTeamConnectionProvider homeconn = new homeTeamConnectionProvider();
-		DBCollection collection = homeconn.getCollection("hometeamscore");
+		DBCollection collection = homeconn.getCollection();
 
 		ObjectMapper mapper = new ObjectMapper();
 		try {

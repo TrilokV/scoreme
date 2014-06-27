@@ -15,7 +15,7 @@ public class awayTeamConnectionProvider {
 	 * @return
 	 */
 
-	public DBCollection getCollection(String string) {
+	public DBCollection getCollection() {
 		try {
 
 			MongoClient mongo = new MongoClient("kahana.mongohq.com", 10089);
@@ -44,7 +44,7 @@ public class awayTeamConnectionProvider {
 
 	public static void main(String[] args) {
 		awayTeamConnectionProvider away = new awayTeamConnectionProvider();
-		DBCollection awayteamscore = away.getCollection("awayteamscore");
+		DBCollection awayteamscore = away.getCollection();
 		if(awayteamscore == null){
 			System.out.println("ERROR:No Connection");
 		}
@@ -53,5 +53,7 @@ public class awayTeamConnectionProvider {
 		}
 
 	}
+
+
 
 }
