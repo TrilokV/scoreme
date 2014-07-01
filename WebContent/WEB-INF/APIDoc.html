@@ -5,30 +5,223 @@
 <title>API Documentation for ScoreME</title>
 </head>
 <body>
-Word: @GET
+Word: @GET<br>
+@Path("/teams")
 <br><br>
 @Path("/awayteam")<br>
+
 •	This displays all the away teams and its stats, like runs it score, wickets it lost, run rate for the game and so on.
-@Path("/awayteam")<br>
+<br>
+<pre>[
+{
+_id: {
+		time: 1403721278000,
+		new: false,
+		inc: 1209466501,
+		machine: 56899084,
+		timeSecond: 1403721278
+	},
+		awayTeamName: "WHCC",
+		awayruns: 0,
+		awaywickets: 10,
+		awayextras: 0,
+		awayovers: 1.4000000000000004,
+		awayrunrate: 0,
+		awayoverslimit: 40
+	},
+	{
+		_id: {
+		time: 1403765492000,
+		new: false,
+		inc: 848385355,
+		machine: 56947219,
+		timeSecond: 1403765492
+	},
+		awayTeamName: "JPL",
+		awayruns: 56,
+		awaywickets: 3,
+		awayextras: 0,
+		awayovers: 3.4000000000000012,
+		awayrunrate: 16.969696969696965,
+		awayoverslimit: 40
+	},
+	{
+		_id: {
+		time: 1403834325000,
+		new: false,
+		inc: -1808257406,
+		machine: 56950581,
+		timeSecond: 1403834325
+	},
+		awayTeam
+		Name: "India",
+		awayruns: 0,
+		awaywickets: 0,
+		awayextras: 0,
+		awayovers: 0,
+		awayrunrate: 0,
+		awayoverslimit: 0
+	},
+	{
+		_id: {
+		time: 1403839791000,
+		new: false,
+		inc: -1171632309,
+		machine: 56925592,
+		timeSecond: 1403839791
+	},
+		awayTeamName: "RSA",
+		awayruns: 0,
+		awaywickets: 0,
+		awayextras: 0,
+		awayovers: 0,
+		awayrunrate: 0,
+		awayoverslimit: 0
+	},
+	{
+		_id: {
+		time: 1403896418000,
+		new: false,
+		inc: 1137734290,
+		machine: 56931686,
+		timeSecond: 1403896418
+	},
+		awayTeamName: "Sri Lanka",
+		awaywickets: 0,
+		awayextras: 0,
+		awayovers: 0,
+		awayrunrate: 0,
+		awayoverslimit: 0,
+		awayruns: 0
+	},
+	{	
+		_id: {
+		time: 1403915573000,
+		new: false,
+		inc: 816907099,
+		machine: 56919991,
+		timeSecond: 1403915573
+	},
+		awayruns: 0,
+		awayTeamName: "USA",
+		awaywickets: 0,
+		awayextras: 0,
+		awayovers: 0,
+		awayrunrate: 0,
+		awayoverslimit: 0
+	},
+	{
+		_id: {
+		time: 1404170085000,
+		new: false,
+		inc: 870699817,
+		machine: -458170348,
+		timeSecond: 1404170085
+	},
+		awayTeamName: "On Heroku",
+		awayruns: 0,
+		awaywickets: 0,
+		awayextras: 0,
+		awayovers: 0,
+		awayrunrate: 0,
+		awayoverslimit: 0
+	}
+]
+</pre>
+@Path("/hometeam")<br>
 •	This displays all the home teams and its stats, like runs it score, wickets it lost, run rate for the game and so on.<br>
+<br>
+JSON
+<br>
+<pre>
+[
+{
+	_id: {
+	time: 1403721283000,
+	new: false,
+	inc: 1635747919,
+	machine: 56937731,
+	timeSecond: 1403721283
+	},
+	homeTeamName: "CCS",
+	homeruns: 0,
+	homewickets: 10,
+	homeextras: 0,
+	homeovers: 1.4000000000000004,
+	homerunrate: 0,
+	homeoverslimit: 40
+}
+]
+
+</pre>
 <br>
 @Path("awayteam/{awayTeamName}")<br>
 •	This returns the search query input.<br>
 •	Returns the details of a particular team, with its stats<br>
 •	Searches the away team database.<br>
+•	Consumes: Away Team name that you want to search.<br>
+•	Example: <code>http://boiling-badlands-7807.herokuapp.com/rest/teams/awayteam/JPL</code><br>
+	Returns JSON<br>
+	
+	<pre>
+	{
+		_id: {
+		time: 1403765492000,
+		new: false,
+		inc: 848385355,
+		machine: 56947219,
+		timeSecond: 1403765492
+		},
+		awayTeamName: "JPL",
+		awayruns: 56,
+		awaywickets: 3,
+		awayextras: 0,
+		awayovers: 3.4000000000000012,
+		awayrunrate: 16.969696969696965,
+		awayoverslimit: 40
+	}
+	</pre>
+
 <br>
 @Path("hometeam/{homeTeamName}")<br>
 •	This returns the search query input.<br>
-•	Returns the details of a particular team, with its stats.<br>
-•	Searches the home team databases<br>
+•	Returns the details of a particular team, with its stats<br>
+•	Searches the home team database.<br>
+•	Consumes: Home Team name that you want to search.<br>
+•	Example: <code>http://boiling-badlands-7807.herokuapp.com/rest/teams/hometeam/CCS</code><br>
+	Returns JSON<br>
+	
+	<pre>
+	{
+		_id: {
+		time: 1403721283000,
+		new: false,
+		inc: 1635747919,
+		machine: 56937731,
+		timeSecond: 1403721283
+	},
+		homeTeamName: "CCS",
+		homeruns: 0,
+		homewickets: 10,
+		homeextras: 0,
+		homeovers: 1.4000000000000004,
+		homerunrate: 0,
+		homeoverslimit: 40
+	}
+	</pre>
+
 <br>
 @Path("updateaway/{awayTeamName}/{awaycommand}")<br>
 •	Used to update the score of away team<br>
 •	@Pathparam awayteam and awaycommand is passed to the method in updatescore package<br>
+•	Consumes: Away Team name that you want to update/Runs1 or Runs2 or Runs3....<br>
+•	Example: <code>http://boiling-badlands-7807.herokuapp.com/rest/teams/updateaway/JPL/Runs1</code><br>
 <br>
 @Path("updatehome/{homeTeamName}/{homecommand}")<br>
 •	Used to update the score of away team<br>
 •	@Pathparam hometeam and homecommand is passed to the method in updatescore package.<br>
+•	Consumes: Home Team name that you want to update/Runs1 or Runs2 or Runs3....<br>
+•	Example: <code>http://boiling-badlands-7807.herokuapp.com/rest/teams/updatehome/CCS/Runs1</code><br>
 <br>
 Word: PUT<br>
 <br>
